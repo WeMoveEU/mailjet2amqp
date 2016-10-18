@@ -1,11 +1,16 @@
 {
   "name": "mailjet2amqp",
-  "version": "0.1",
+  "version": "0.0.1",
   "description": "A simple NodeJS http server forwarding mailjet events to an AMQP exchange",
   "dependencies": {
-    "amqp-lib": "~0.4.2"
+    "amqplib": "~0.4.2"
   },
   "devDependencies": {},
-  "author": "WeMove.EU"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/WeMoveEU/mailjet2amqp.git"
+  },
+  "author": "WeMove.EU",
+  "license": "AGPL-3.0"
 }
 

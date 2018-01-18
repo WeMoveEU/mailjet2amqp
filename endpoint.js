@@ -45,14 +45,18 @@ function configureChannel(channel) {
 function startServer(channel) {
   http.createServer(function(req, res) {
 
+    //console.info("Received some notification");
     if (req.method === 'POST') {
+
       var data = '';
       req.on('data', function(chunk) {
+	//console.info("Got " + chunk.toString());
         data += chunk.toString();
       });
 
       req.on('end', function() {
         try {
+	  //console.info("Received " + data);
           var events = JSON.parse(data);
           if (Array.isArray(events)) { //APIv2, multiple events per call
             events.forEach(function(evt) {
@@ -64,8 +68,9 @@ function startServer(channel) {
         } catch (e) {
           console.error("Error while processing input " + data.toString());
           console.error(e);
-          res.statusCode = 400; //Bad request
+          res.statusCode = 500; //Bad request
         }
+	//console.info("Acknowledging " + data);
         res.end();
       });
     } else {
@@ -87,5 +92,8 @@ function pushEvent(evt, channel) {
     throw "Missing event type";
   }
   var msg = new Buffer(JSON.stringify(evt));
+  //if (eventType == 'bounce' || eventType == 'blocked') {
+  //  console.info("Publishing: " + msg.toString());
+  //}
   channel.publish(config.exchange_name, routing_key(eventType), msg, config.publishOptions);
 }

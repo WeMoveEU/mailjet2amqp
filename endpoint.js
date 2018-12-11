@@ -69,6 +69,7 @@ function startServer(channel) {
           console.error("Error while processing input " + data.toString());
           console.error(e);
           res.statusCode = 500; //Bad request
+          throw "The RabbitMQ connection may have been lost, please restart me";
         }
 	//console.info("Acknowledging " + data);
         res.end();

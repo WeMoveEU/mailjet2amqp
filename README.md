@@ -21,3 +21,29 @@ Create a file _config.js_ at the root to override the default config properties:
 `nodejs endpoint.js`
 
 Logs are sent to the standard output.
+
+## Running in Docker
+
+There is Dockerfile in repository allowing to build image from dockerfile and running it in Docker.
+
+### Building image
+
+```
+docker build mailjet2amqp:latest .
+```
+
+Instead of `latest` other tag can be used.
+
+### Running image
+
+`mailjet2amqp` requires `config.js` to be mounted as volume. See `default_config.js` for reference.
+
+Interactive docker sessions
+```
+docker run -it -v $(pwd)/config.js:/app/config.js mailjet2amqp:latest
+```
+
+In background
+```
+docker run -d -v $(pwd)/config.js:/app/config.js mailjet2amqp:latest
+```

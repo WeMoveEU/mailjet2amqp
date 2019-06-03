@@ -11,6 +11,9 @@
     "url": "git://github.com/WeMoveEU/mailjet2amqp.git"
   },
   "author": "WeMove.EU",
-  "license": "AGPL-3.0"
+  "license": "AGPL-3.0",
+  "scripts": {
+    "start": "node endpoint.js"
+  }
 }
 

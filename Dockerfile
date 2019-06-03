@@ -5,6 +5,6 @@ WORKDIR /app
 COPY package.json package.json
 COPY *.js ./
 
-RUN npm install && pwd && ls -l
+RUN npm install
 
-CMD ["node", "endpoint.js"]
+CMD ["npm", "start"]

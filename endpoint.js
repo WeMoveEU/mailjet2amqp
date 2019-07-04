@@ -6,7 +6,7 @@ var fs = require('fs');
 var default_config = require('./default_config');
 var config = Object.assign(default_config, require('./config'));
 
-amqp.connect(config.host_uri).then(function(conn) {
+amqp.connect(config.host_uri, config.connectOptions).then(function(conn) {
 
   conn.createChannel()
     .then(configureChannel)
